@@ -23,11 +23,36 @@ _supported_bills = {
         'next_btn_selector': "button[name*='BtnStep1']",
         'url': 'https://www.iec.co.il/pages/billspayment.aspx',
     },
-    'TEST': {
+    'arnona_givatayim': {
         'fields': {
-            'TEST1',
-            'TEST2'
-        }
+            'customer number ("mispar meshalem")': {
+                'input_value': '',
+                'selector': "input[id*='MisparHeshbon']",
+            },
+            'invoice number ("mispar masleka")': {
+                'input_value': '',
+                'selector': "input[name*='MisparMislaka']",
+            },
+        },
+        'next_btn_selector': "button[class*='btnNext']",
+        'url': 'https://www.citypay.co.il/htmls_Heb/tofes_tashlum.asp?SId=1&LAMASID=263000',
+    },'pazgas': {
+        'fields': {
+            'customer number ("mispar tzarkan")': {
+                'input_value': '',
+                'selector': "input[id*='input_1_10']",
+            },
+            'invoice number ("mispar heshbonit")': {
+                'input_value': '',
+                'selector': "input[id*='input_1_11']",
+            },
+            'email': {
+                'input_value': '',
+                'selector': "input[id*='input_1_14']",
+            },
+        },
+        'next_btn_selector': "",
+        'url': 'https://www.pazgas.co.il/he/services-pay-gas-bill/',
     },
 }
 _indent = '\n    '
@@ -106,9 +131,9 @@ async def launch_browser(url):
     )
     await page.goto(
         url,
-        {'waitUntil': 'load'}
+        {'waitUntil': 'networkidle2'}
     )
-    await page.waitForNavigation({'waitUntil': 'networkidle0'})
+    # await page.waitForNavigation({'waitUntil': 'networkidle2'})
 
     return browser, page
 
@@ -122,11 +147,16 @@ async def go_pmt_page(db):
     for field_name, field_attrs in db['fields'].items():
         print('Filling in details for field: {}'.format(field_name))
         element = await page.querySelector(field_attrs['selector'])
+        if element is None:
+            # todo: for some reason the second iterated element is None (detached from DOM)?
+            await asyncio.sleep(5)
         print('query selector awaited')
+        print("field_attrs['input_value']: {}".format(field_attrs['input_value']))
         await element.type(field_attrs['input_value'])
         await asyncio.sleep(1)
-    next_btn_element = await page.querySelector(db['next_btn_selector'])
-    await next_btn_element.click()
+    if db['next_btn_selector']:
+        next_btn_element = await page.querySelector(db['next_btn_selector'])
+        await next_btn_element.click()
     await asyncio.sleep(10000)
 
 

@@ -31,12 +31,13 @@ _supported_bills = {
             },
             'invoice number ("mispar masleka")': {
                 'input_value': '',
-                'selector': "input[name*='MisparMislaka']",
+                'selector': "input[id*='MisparMislaka']",
             },
         },
         'next_btn_selector': "button[class*='btnNext']",
         'url': 'https://www.citypay.co.il/htmls_Heb/tofes_tashlum.asp?SId=1&LAMASID=263000',
-    },'pazgas': {
+    },
+    'pazgas': {
         'fields': {
             'customer number ("mispar tzarkan")': {
                 'input_value': '',

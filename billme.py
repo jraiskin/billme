@@ -8,54 +8,8 @@ import pyppeteer
 # conda list -e > requirements.txt
 
 _version = '0.0.2'
-_supported_bills = {
-    'hashmal': {
-        'fields': {
-            'contract number ("heshbon hoze")': {
-                'input_value': '',
-                'selector': "input[name*='BillContractNumber']",
-            },
-            'invoice 4 last digits ("kabala - makor")': {
-                'input_value': '',
-                'selector': "input[name*='BillLastFourDigits']",
-            },
-        },
-        'next_btn_selector': "button[name*='BtnStep1']",
-        'url': 'https://www.iec.co.il/pages/billspayment.aspx',
-    },
-    'arnona_givatayim': {
-        'fields': {
-            'customer number ("mispar meshalem")': {
-                'input_value': '',
-                'selector': "input[id*='MisparHeshbon']",
-            },
-            'invoice number ("mispar masleka")': {
-                'input_value': '',
-                'selector': "input[id*='MisparMislaka']",
-            },
-        },
-        'next_btn_selector': "button[class*='btnNext']",
-        'url': 'https://www.citypay.co.il/htmls_Heb/tofes_tashlum.asp?SId=1&LAMASID=263000',
-    },
-    'pazgas': {
-        'fields': {
-            'customer number ("mispar tzarkan")': {
-                'input_value': '',
-                'selector': "input[id*='input_1_10']",
-            },
-            'invoice number ("mispar heshbonit")': {
-                'input_value': '',
-                'selector': "input[id*='input_1_11']",
-            },
-            'email': {
-                'input_value': '',
-                'selector': "input[id*='input_1_14']",
-            },
-        },
-        'next_btn_selector': "",
-        'url': 'https://www.pazgas.co.il/he/services-pay-gas-bill/',
-    },
-}
+with open('params.json') as f:
+    _supported_bills = json.loads(f.read())
 _indent = '\n    '
 _greet = """Welcome to *billme* version {0[version]}
 Current supported bills are referred to as:{0[indent]}{0[supported_bills]}

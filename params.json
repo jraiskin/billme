@@ -14,17 +14,42 @@
     "url": "https://www.iec.co.il/pages/billspayment.aspx"
   },
   "arnona_givatayim": {
-    "fields": {
-      "customer number (\"mispar meshalem\")": {
-        "input_value": "",
-        "selector": "input[id*='MisparHeshbon']"
+    "stages": [
+      {
+        "fields": {
+          "customer number (\"mispar meshalem\")": {
+            "input_value": "",
+            "selector": "input[id*='MisparHeshbon']"
+          },
+          "invoice number (\"mispar masleka\")": {
+            "input_value": "",
+            "selector": "input[id*='MisparMislaka']"
+          }
+        },
+        "next_btn_selector": "button[class*='btnNext']"
       },
-      "invoice number (\"mispar masleka\")": {
-        "input_value": "",
-        "selector": "input[id*='MisparMislaka']"
+      {
+        "fields": {
+          "full name": {
+            "input_value": "",
+            "selector": "input[id*='txtFullName']"
+          },
+          "phone number": {
+            "input_value": "",
+            "selector": "input[id*='txtPhone']"
+          },
+          "email": {
+            "input_value": "",
+            "selector": "input[id*='txtEmail']"
+          },
+          "address (optional)": {
+            "input_value": "",
+            "selector": "input[id*='txtAddress']"
+          }
+        },
+        "next_btn_selector": "button[class='btnNext btn formbtn btnShowSum ng-binding']"
       }
-    },
-    "next_btn_selector": "button[class*='btnNext']",
+    ],
     "url": "https://www.citypay.co.il/htmls_Heb/tofes_tashlum.asp?SId=1&LAMASID=263000"
   },
   "pazgas": {
@@ -44,5 +69,54 @@
     },
     "next_btn_selector": "",
     "url": "https://www.pazgas.co.il/he/services-pay-gas-bill/"
-  }
+  },
+  "_TEMPLATE": {
+    "stages": [
+      {
+        "fields": {
+          "field type 1": {
+            "input_value": "",
+            "selector": "CSS_SELECTOR"
+          },
+          "field type 2": {
+            "input_value": "",
+            "selector": "CSS_SELECTOR"
+          }
+        },
+        "next_btn_selector": "CSS_SELECTOR"
+      },
+      {
+        "fields": {
+          "field type 1": {
+            "input_value": "",
+            "selector": "CSS_SELECTOR"
+          },
+          "field type 2": {
+            "input_value": "",
+            "selector": "CSS_SELECTOR"
+          }
+        },
+        "next_btn_selector": "CSS_SELECTOR"
+      }
+    ],
+    "url": "URL"
+  },
+  "_comments_ignore_me": [
+    {
+      "arnona_givatayim": {
+        "fields": {
+          "customer number (\"mispar meshalem\")": {
+            "input_value": "",
+            "selector": "input[id*='MisparHeshbon']"
+          },
+          "invoice number (\"mispar masleka\")": {
+            "input_value": "",
+            "selector": "input[id*='MisparMislaka']"
+          }
+        },
+        "next_btn_selector": "button[class*='btnNext']",
+        "url": "https://www.citypay.co.il/htmls_Heb/tofes_tashlum.asp?SId=1&LAMASID=263000"
+      }
+    }
+  ]
 }

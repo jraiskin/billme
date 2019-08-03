@@ -1,16 +1,20 @@
 {
   "hashmal": {
-    "fields": {
-      "contract number (\"heshbon hoze\")": {
-        "input_value": "",
-        "selector": "input[name*='BillContractNumber']"
-      },
-      "invoice 4 last digits (\"kabala - makor\")": {
-        "input_value": "",
-        "selector": "input[name*='BillLastFourDigits']"
+    "stages": [
+      {
+        "fields": {
+          "contract number (\"heshbon hoze\")": {
+            "input_value": "",
+            "selector": "input[name*='BillContractNumber']"
+          },
+          "invoice 4 last digits (\"kabala - makor\")": {
+            "input_value": "",
+            "selector": "input[name*='BillLastFourDigits']"
+          }
+        },
+        "next_btn_selector": "button[name*='BtnStep1']"
       }
-    },
-    "next_btn_selector": "button[name*='BtnStep1']",
+    ],
     "url": "https://www.iec.co.il/pages/billspayment.aspx"
   },
   "arnona_givatayim": {
@@ -52,7 +56,25 @@
     ],
     "url": "https://www.citypay.co.il/htmls_Heb/tofes_tashlum.asp?SId=1&LAMASID=263000"
   },
-  "pazgas": {
+  "water_givatayim_UNSUPPORTED": {
+    "stages": [
+      {
+        "fields": {
+          "customer number (\"mispar meshalem\")": {
+            "input_value": "",
+            "selector": "input[id*='txtMeshalem']"
+          },
+          "invoice number (\"mispar masleka\")": {
+            "input_value": "",
+            "selector": "input[id*='txtSefah']"
+          }
+        },
+        "next_btn_selector": "button[id*='submit']"
+      }
+    ],
+    "url": "http://www.mast.co.il/64/payment"
+  },
+  "pazgas_UNSUPPORTED": {
     "fields": {
       "customer number (\"mispar tzarkan\")": {
         "input_value": "",
@@ -100,23 +122,5 @@
       }
     ],
     "url": "URL"
-  },
-  "_comments_ignore_me": [
-    {
-      "arnona_givatayim": {
-        "fields": {
-          "customer number (\"mispar meshalem\")": {
-            "input_value": "",
-            "selector": "input[id*='MisparHeshbon']"
-          },
-          "invoice number (\"mispar masleka\")": {
-            "input_value": "",
-            "selector": "input[id*='MisparMislaka']"
-          }
-        },
-        "next_btn_selector": "button[class*='btnNext']",
-        "url": "https://www.citypay.co.il/htmls_Heb/tofes_tashlum.asp?SId=1&LAMASID=263000"
-      }
-    }
-  ]
+  }
 }

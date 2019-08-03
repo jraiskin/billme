@@ -2,7 +2,6 @@
 
 import json
 import asyncio
-from concurrent.futures import FIRST_COMPLETED
 
 import pyppeteer
 
@@ -64,7 +63,7 @@ def get_bill_inputs():
     return db
 
 
-async def launch_browser(url):
+async def launch_browser(url, block_media):
     print('Launching new browser instance, going to URL: {}'.format(url))
 
     patch_pyppeteer()
@@ -74,31 +73,31 @@ async def launch_browser(url):
     # page.setDefaultNavigationTimeout()
     print('Browser launched and page initiated')
 
-    # setup page properties
-    await page.setRequestInterception(True)
+    if block_media:
+        # setup page properties
+        await page.setRequestInterception(True)
 
-    # async def block_request(request):
-    #     blockedResourceTypes = [
-    #         'image',
-    #         'media',
-    #         'font',
-    #         'texttrack',
-    #         'object',
-    #         'beacon',
-    #         'csp_report',
-    #         'imageset',
-    #     ]
-    #     # requestUrl = request._url.split('?')[0].split('#')[0]
-    #     if request.resourceType in blockedResourceTypes:
-    #         await request.abort()
-    #     else:
-    #         await request.continue_()
-    #     return None
-    #
-    # page.on(
-    #     'request',
-    #     lambda request: asyncio.ensure_future(block_request(request))
-    # )
+        async def block_request(request):
+            blockedResourceTypes = [
+                'image',
+                'media',
+                'font',
+                'texttrack',
+                'object',
+                'beacon',
+                'csp_report',
+                'imageset',
+            ]
+            if request.resourceType in blockedResourceTypes:
+                await request.abort()
+            else:
+                await request.continue_()
+            return None
+
+        page.on(
+            'request',
+            lambda request: asyncio.ensure_future(block_request(request))
+        )
     await page.goto(
         url,
         {'waitUntil': 'networkidle2'}
@@ -107,10 +106,10 @@ async def launch_browser(url):
     return browser, page
 
 
-async def go_pmt_page(db):
+async def go_pmt_page(db, block_media):
     seed_url = db['url']
     stages = db['stages']
-    browser, page = await launch_browser(seed_url)
+    browser, page = await launch_browser(seed_url, block_media)
     await asyncio.sleep(2)
 
     for stage in stages:
@@ -155,7 +154,7 @@ async def main():
         })
     )
     db = get_bill_inputs()
-    pmt_page = await go_pmt_page(db)
+    pmt_page = await go_pmt_page(db, block_media=False)
 
     return pmt_page
 

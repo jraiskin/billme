@@ -74,22 +74,26 @@
     ],
     "url": "http://www.mast.co.il/64/payment"
   },
-  "pazgas_UNSUPPORTED": {
-    "fields": {
-      "customer number (\"mispar tzarkan\")": {
-        "input_value": "",
-        "selector": "input[id*='input_1_10']"
-      },
-      "invoice number (\"mispar heshbonit\")": {
-        "input_value": "",
-        "selector": "input[id*='input_1_11']"
-      },
-      "email": {
-        "input_value": "",
-        "selector": "input[id*='input_1_14']"
+  "pazgas": {
+    "stages": [
+      {
+        "fields": {
+          "customer number (\"mispar tzarkan\")": {
+            "input_value": "",
+            "selector": "input[id*='input_1_10']"
+          },
+          "invoice number (\"mispar heshbonit\")": {
+            "input_value": "",
+            "selector": "input[id*='input_1_11']"
+          },
+          "email": {
+            "input_value": "",
+            "selector": "input[id*='input_1_14']"
+          }
+        },
+        "next_btn_selector": ""
       }
-    },
-    "next_btn_selector": "",
+    ],
     "url": "https://www.pazgas.co.il/he/services-pay-gas-bill/"
   },
   "_TEMPLATE": {

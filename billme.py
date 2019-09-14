@@ -7,7 +7,7 @@ import pyppeteer
 
 # conda list -e > requirements.txt
 
-_version = '0.0.2'
+_version = '0.0.8'
 with open('params.json', encoding='utf-8') as f:
     _supported_bills = json.loads(f.read())
 _indent = '\n    '

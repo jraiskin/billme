@@ -96,6 +96,38 @@
     ],
     "url": "https://www.pazgas.co.il/he/services-pay-gas-bill/"
   },
+  "water_petah_tikva": {
+    "stages": [
+      {
+        "fields": {
+        },
+        "next_btn_selector": "button[id*='activate-step-2']"
+      },
+      {
+        "fields": {
+          "invoice number (\"mispar masleka\")": {
+            "input_value": "",
+            "selector": "input[id*='masleka_input']"
+          },
+          "contract number (\"heshbon hoze\")": {
+            "input_value": "",
+            "selector": "input[id*='hesbon_input']"
+          }
+        },
+        "next_btn_selector": "button[id*='activate-step-3']"
+      },
+      {
+        "fields": {
+          "email": {
+            "input_value": "",
+            "selector": "input[id*='email_input']"
+          }
+        },
+        "next_btn_selector": "button[id*='buttonPay']"
+      }
+    ],
+    "url": "https://www.paybill.co.il/Payment/WaterPayment?p=109"
+  },
   "_TEMPLATE": {
     "stages": [
       {
